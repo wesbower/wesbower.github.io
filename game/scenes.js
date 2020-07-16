@@ -100,21 +100,17 @@ function help()  {
     fill(255, 190, 0);
     textSize(48);
     if (count == 0){
-      text("help...?", w, height/2 + h);
-      text("have you tried just", w, 2*height/3 + h);
+      text("have you tried", w, 2*height/3 + h);
       text("doing it better?", w, 3*height/4 + h);
     }
     else if (count == 1){
-      text("how about if you", w, 2*height/3 + h);
       text("clicked the thing faster?", w, 3*height/4 + h);
     }
-    else if (count == 2){
-      text("boi", w, height/2 + h);
-      text("just click the little circle.", w, 2*height/3 + h);
-      text("click it.", w, 3*height/4 + h);
+    else if (count == 2){;
+      text("try clicking the little circle.", w, 2*height/3 + h);
     }
     else{
-      text("It would have taken", w, 3*height/5 + h);
+      text("it would have taken", w, 3*height/5 + h);
       text("so long to draw out", w, 2*height/3 + h);
       text("all these words...", w, 3*height/4 + h);
     }
