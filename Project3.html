@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+
+<title> Project 3 Page </title>
+
+<link type="text/css" rel="stylesheet" href="css/overlaypopup.css" />
+<link type="text/css" rel="stylesheet" href="css/main.css" />
+
+</head>
+
+<body>
+
+
+<div class="container header">
+
+<h4> <a href="index.html" ><<<<</a>  Back to the Homepage </h4>
+<h2> Project 3 </h2> 
+
+
+
+<div class="statement_text"> 
+<em>
+"That's what I said. Sodium Chloride" -Jimmy Neutron
+</em>
+<br>
+
+</div>
+
+
+
+<blockquote>
+  <br>
+  <br>
+  For Project 3 we I came up with a small enclosure for my device that utilizes 1 potentiometer (with a sick knob), a momentary button, a toggle button, a <1 Ohm speaker, a green LED, a UV LED, and a photovoltaic sensor. The video demonstrates ther functionality of the device, and I knew I wanted to make it smaller to be able to hold it in my hand better. Plus small little technology or devices are always intriguing. 
+  <br>
+  <br>
+  <img src="project3/image2.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+This was my design. The knobs and buttons were put in places that would allow for the best and easist interface for users. The right thumb can hold the button producing sound with the left hand is free to move the potentiometer and for covering the photo cell also. All of the equipment was connected to an Arduino Uno microchip with jumper wires and a breadboard. 
+  <br>
+  <br>
+ <a href="project3/video1.mp4">VIDEO DOCUMENTATION HERE</a>
+  <br>
+  <br>
+  When the toggle switch is in the on position, if the user presses the momentary switch the speaker plays a note. The pitch of this note is determined by the position of the potentiometer with the farthest couter-clockwish extreme representing the lowest tone and the farthest clockwish extreme being the highest tone. While the toggle switch is in the on position, the green LED remains in the on state, and the UV LED brightness is mapped to the value of the potentiometer so that when it is turned all the way down and the tone is low, the LED is dim. When the tone is high and the potentiometer is turned all the way up, the LED is the brightest.
+  <br>
+  <br>
+  Here is my code:
+  <br>
+  <br>
+  #include "pitches.h" <br>
+  int notes = 52; <br>
+  int scale[] = { <br>
+  NOTE_B0, NOTE_C1, NOTE_D1, NOTE_E1, NOTE_F1, NOTE_G1, NOTE_A1, NOTE_B1, NOTE_C2,  <br>NOTE_D2, NOTE_E2, NOTE_F2, NOTE_G2, NOTE_A2,  <br>
+  NOTE_B2, NOTE_C3, NOTE_D3, NOTE_E3, NOTE_F3, NOTE_G3, NOTE_A3, NOTE_B3, NOTE_C4,  <br>NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, <br>
+  NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_B5, NOTE_C6,  <br>NOTE_D6, NOTE_E6, NOTE_F6, NOTE_G6, NOTE_A6,  <br>
+  NOTE_B6, NOTE_C7, NOTE_D7, NOTE_E7, NOTE_F7, NOTE_G7, NOTE_A7, NOTE_B7, NOTE_C8, NOTE_D8 <br>
+}; <br>
+int scaleDurations[] = { <br>
+  8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,  <br>
+  8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8 <br>
+}; <br>
+const int speakPin = 9;     // the number of the speaker pin <br>
+
+const int button1Pin = 4;     // momentary <br>
+const int button2Pin = 5;  // toggle <br>
+
+const int led1Pin =  10;      // LED digital out <br>
+const int led2Pin = 11; // Analog digital out <br>
+
+const int analogInPin0 = A0; //analog input pin for pot <br>
+const int analogInPin1 = A1; //analog input pin for photcell <br>
+
+int sensorValue0 = 0;        // value read from the pot <br>
+int outputValue0 = 0;        // value output for map <br>
+
+int sensorValue1 = 0;        // value read from the photcell <br>
+int outputValue1 = 0;        // value output for map <br>
+int button1State = 0;         // variable for reading the momentary button status <br>
+int button2State = 0; //variable for togle button <br>
+int led1Value = 0; //variable for brightness of LED 1 <br>
+int led2Value = 0; //variable for brightness of LED 2 <br>
+
+void setup() { <br>
+  Serial.begin(9600); <br>
+  pinMode(led1Pin, OUTPUT); <br>
+  pinMode(led2Pin, OUTPUT); <br>
+  pinMode(button1Pin, INPUT); <br>
+  pinMode(button2Pin, INPUT); <br>
+
+  pinMode(analogInPin0, INPUT); <br>
+  pinMode(analogInPin1, INPUT); <br>
+} <br>
+void loop() { <br>
+  button1State = digitalRead(button1Pin); <br>
+  button2State = digitalRead(button2Pin); <br>
+  sensorValue0 = analogRead(analogInPin0); <br>
+  sensorValue1 = analogRead(analogInPin1); <br>
+  outputValue0 = map(sensorValue0, 0, 1023, 0, 51); <br>
+  led1Value = map(sensorValue0, 0, 1023, 0, 255); <br>
+  led2Value = map(sensorValue1, 0, 1023, 255, 0); <br>
+if (button2State == HIGH){ <br>
+  analogWrite(led2Pin, led2Value); <br>
+  if (button1State == HIGH) { <br>
+      int noteDuration = 1000 / scaleDurations[outputValue0]; <br>
+      tone(speakPin, scale[outputValue0], noteDuration); <br>
+      analogWrite(led1Pin, led1Value); <br>
+  } else { <br>
+    noTone(speakPin); <br>
+    analogWrite(led1Pin, 0); <br>
+  } <br>
+
+} else { <br>
+  analogWrite(led2Pin, 0); <br>
+  analogWrite(led1Pin, 0); <br>
+} <br>
+} <br>
+  <br>
+  <br>
+<img src="project3/image3.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  <img src="project3/image4.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  <img src="project3/image5.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  
+  
+  <br>
+  <br>
+</blockquote>
+<br>
+
+<blockquote>
+  <br>
+    <br>
+    <br>
+
+</blockquote>
+<br>
+&nbsp;
+&nbsp;
+<blockquote>
+  <blockquote>
+    <strong>A COOL AND INTERESTING VIDEO: <a href="https://www.youtube.com/watch?v=wwGMoGc29N8">Super Slow Motion Skateboarding Filmed by Adam Shomsky at 1000 fps</a></strong><br>
+  </blockquote>
+</blockquote>
+
+
+
+</body>
+
+
+
+
+</html>

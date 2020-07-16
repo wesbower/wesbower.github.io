@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+
+<title> Project 6 (Final) Page </title>
+
+<link type="text/css" rel="stylesheet" href="css/overlaypopup.css" />
+<link type="text/css" rel="stylesheet" href="css/main.css" />
+
+</head>
+
+<body>
+
+
+<div class="container header">
+
+<h4> <a href="index.html" ><<<<</a>  Back to the Homepage </h4>
+<h2> Project 6 (Final) </h2> 
+
+
+
+<div class="statement_text"> 
+<em>
+"What?" -Patrick Star
+</em>
+<br>
+
+</div>
+
+
+
+<blockquote>
+  <br>
+  <br>
+  For our final project design, I we decided that our device would be the vocal box for the system. Kristie and I are working on Project A and making many different devices that are connected on a universal bluetooth network. We plan to take the different signals, inputs, and outputs from all the devices and vocalize them in the form of sounds coming from the speakers system we will build. 
+  <br>
+  <br>
+  I also realized that with so many speakers, where the sound comes from is almost equally important to what the sound is. So I thought of making a speaker system that is effectively able to produce sounds almost behind the listener's ears. We would also include a potentiometer and buttons for the creation of unique sounds too. The potentiometer would select where the sound came from and different buttons would make different sounds. I also thought about having modes that are able to be switched to with toggle buttons like making the sound come out of the speakers symmetrically horizontally but still be able to be moved from the front to the back speakers. 
+  <br>
+  <br>
+<img src="project6/image1.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  <img src="project6/image2.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  <img src="project6/image3.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  <br>
+  <br>
+  Maker Faire was an incredible experience and my first ever! I helped load the moving U-Haul truck on Thursday and also attended the Faire Friday and Sunday. Friday was a lot more chill and relaxing than Sunday especially with the free beer and paella after all the attendees left after 5:30. My piece was a pretty cool addition to the booth but I was kind of disappointed that it didn't asctually listen to our system. But Kristie told me she just started telling people it was connected an listening. I felt bad lying but it sorta made our thing sound cooler than when I told them what it actually did. Our last problem was when we transfered everything onto a perf-board for a more permanent design. Inevitably after taking apart our giant mesds of wires and putting it back together again I was afraid that it wouldn't work right away, and it didn't. After trouble shouting for a few hours though we arrived at a state where it worked enough to show. I really liked this project though and actually building a device and programming it to do something interesting was very fun. The programming was a lot more theraputic for me than making the hardware though.
+
+  <br>
+  <br>
+
+  Our code was interesting and I thought it would have a lot more but in the end I just programmed it to do different interesting things when different buttons were held down as the potentiometer rotated.
+   <br>
+  <br>
+  This is our code:
+   <br>
+  <br>#include <TaskScheduler.h>
+<br>// #define _TASK_MICRO_RES
+<br>
+<br>#define SPEAKER_1     15
+<br>#define SPEAKER_2     32
+<br>#define SPEAKER_3     14
+<br>#define SPEAKER_4     22
+<br>#define SPEAKER_5     23
+<br>#define SPEAKER_6     21
+<br>#define SPEAKER_7     18
+<br>#define SPEAKER_8     5
+
+<br>#define BUTTON_MASTERSWITCH     25
+<br>#define BUTTON_1      34
+<br>#define BUTTON_2      39
+<br>#define BUTTON_3      36
+<br>#define POT     4
+<br>
+<br>
+<br>#define LEDC_TIMER_13_BIT  13
+<br>
+<br>#define LEDC_CHANNEL_1     1
+<br>#define LEDC_FREQ_1     130
+<br>
+<br>#define LEDC_CHANNEL_2     2
+<br>#define LEDC_FREQ_2     200
+<br>
+<br>#define LEDC_CHANNEL_3     3
+<br>#define LEDC_FREQ_3     240
+<br>
+<br>#define LEDC_CHANNEL_4     4
+<br>#define LEDC_FREQ_4     310
+<br>
+<br>#define LEDC_CHANNEL_5     5
+<br>#define LEDC_FREQ_5     370
+<br>
+<br>#define LEDC_CHANNEL_6     6
+<br>#define LEDC_FREQ_6     410
+<br>
+<br>#define LEDC_CHANNEL_7     7
+<br>#define LEDC_FREQ_7     470
+<br>
+<br>#define LEDC_CHANNEL_8     8
+<br>#define LEDC_FREQ_8     540
+<br>
+<br>int channels[] = {1, 2, 3, 4, 5, 6, 7, 8};
+<br>int freqs[] = {130, 160, 190, 220, 250, 280, 310, 340};
+<br>
+<br>// Callback methods prototypes
+<br>void checkallCB();
+<br>void speaker1CB();
+<br>void speaker2CB();
+<br>void speaker3CB();
+<br>void speaker4CB();
+<br>void speaker5CB();
+<br>void speaker6CB();
+<br>void speaker7CB();
+<br>void speaker8CB();
+<br>
+<br>void manualModeCB();
+<br>void ambientModeCB();
+<br>
+<br>//Tasks
+<br>Task checkall(5, TASK_FOREVER, &checkallCB);
+<br>
+<br>Task speaker1(5, TASK_FOREVER, &speaker1CB);
+<br>Task speaker2(5, TASK_FOREVER, &speaker2CB);
+<br>Task speaker3(5, TASK_FOREVER, &speaker3CB);
+<br>Task speaker4(5, TASK_FOREVER, &speaker4CB);
+<br>Task speaker5(5, TASK_FOREVER, &speaker5CB);
+<br>Task speaker6(5, TASK_FOREVER, &speaker6CB);
+<br>Task speaker7(5, TASK_FOREVER, &speaker7CB);
+<br>Task speaker8(5, TASK_FOREVER, &speaker8CB);
+<br>
+<br>Task manualMode(50, TASK_FOREVER, &manualModeCB);
+<br>Task ambientMode(50, TASK_FOREVER, &ambientModeCB);
+<br>
+<br>Scheduler runner;
+<br>
+<br>uint8_t ledR = 12;
+<br>uint8_t ledG = 27;
+<br>uint8_t ledB = 33; 
+<br>
+<br>uint8_t ledArray[3] = {11, 12, 13};
+<br>
+<br>
+<br>uint8_t color = 0; 
+<br>uint32_t R, G, B;  
+<br>uint8_t brightness = 255;
+<br>
+<br>
+<br>
+<br>
+<br>void setup () {
+  <br>Serial.begin(115200);
+<br>
+  <br>ledcSetup(11, 12000, 13);
+  <br>ledcSetup(12, 12000, 8);
+  <br>ledcSetup(13, 12000, 8);
+<br>  
+  <br>ledcAttachPin(ledG, 11);
+  <br>ledcAttachPin(ledB, 12);
+  <br>ledcAttachPin(ledR, 13);
+<br>
+<br><br>
+  <br>pinMode(SPEAKER_1, OUTPUT);
+  <br>pinMode(SPEAKER_2, OUTPUT);
+  <br>pinMode(SPEAKER_3, OUTPUT);
+  <br>pinMode(SPEAKER_4, OUTPUT);
+  <br>pinMode(SPEAKER_5, OUTPUT);
+  <br>pinMode(SPEAKER_6, OUTPUT);
+  <br>pinMode(SPEAKER_7, OUTPUT);
+<br>  pinMode(SPEAKER_8, OUTPUT);
+
+<br>pinMode(BUTTON_MASTERSWITCH, INPUT);
+  <br>pinMode(BUTTON_1, INPUT);
+  <br>pinMode(BUTTON_2, INPUT);
+  <br>pinMode(BUTTON_3, INPUT);
+  <br>pinMode(POT, INPUT);
+<br>  
+  <br>ledcSetup(channels[0], freqs[0], LEDC_TIMER_13_BIT);
+  <br>ledcAttachPin(SPEAKER_1, channels[0]);
+<br>
+  <br>ledcSetup(channels[1], freqs[1], LEDC_TIMER_13_BIT);
+  <br>ledcAttachPin(SPEAKER_2, channels[1]);
+<br><br>
+  <br><br>ledcSetup(channels[2], freqs[2], LEDC_TIMER_13_BIT);
+  <br><br>ledcAttachPin(SPEAKER_3, channels[2]);
+<br>
+  <br>ledcSetup(channels[3], freqs[3], LEDC_TIMER_13_BIT);
+<br><br>  ledcAttachPin(SPEAKER_4, channels[3]);
+<br>
+<br>  ledcSetup(channels[4], freqs[4], LEDC_TIMER_13_BIT);
+<br>  ledcAttachPin(SPEAKER_5, channels[4]);
+
+<br>  ledcSetup(channels[5], freqs[5], LEDC_TIMER_13_BIT);
+<br>  ledcAttachPin(SPEAKER_6, channels[5]);
+
+<br>  ledcSetup(channels[6], freqs[6], LEDC_TIMER_13_BIT);
+<br>  ledcAttachPin(SPEAKER_7, channels[6]);
+
+  <br>ledcSetup(channels[7], freqs[7], LEDC_TIMER_13_BIT);
+  <br>ledcAttachPin(SPEAKER_8, channels[7]);
+
+<br>  
+<br>  runner.init();
+  
+<br>  runner.addTask(checkall);
+  <br>runner.addTask(speaker1);
+  <br>runner.addTask(speaker2);
+  <br>runner.addTask(speaker3);
+  <br>runner.addTask(speaker4);
+  <br>runner.addTask(speaker5);
+  <br>runner.addTask(speaker6);
+  <br>runner.addTask(speaker7);
+  <br>runner.addTask(speaker8);
+<br>
+  <br>runner.addTask(manualMode);
+  <br>runner.addTask(ambientMode);
+<br>
+<br>  
+  <br>checkall.enable();
+<br>
+<br>}
+<br><br>
+<br>
+<br>void loop () {
+  <br>runner.execute();
+<br>}
+<br>
+<br>void ledcAnalogWrite(uint8_t channel, uint32_t value, uint32_t valueMax = 255) {
+  <br>// calculate duty, 8191 from 2 ^ 13 - 1
+  <br>uint32_t duty = (8191 / valueMax) * min(value, valueMax);
+<br>
+  <br>// write duty to LEDC
+  <br>ledcWrite(channel, duty);
+<br>//  Serial.println("analogwrite");
+<br>}
+<br>
+<br>void checkallCB() {
+<br>      if (digitalRead(BUTTON_MASTERSWITCH) == LOW){
+      <br>    manualMode.disable();
+          <br>ambientMode.enable();
+<br>          Serial.println("AMBIENT");
+      <br>}
+      <br>else{
+<br>        ambientMode.disable();
+<br>        manualMode.enable();
+        <br>Serial.println("MANUAL");
+      <br>}
+<br>//    if (t1.isFirstIteration()) {
+<br>//      runner.addTask(t3);
+<br>//      t3.enable();
+<br>//      Serial.println("t1: enabled t3 and added to the chain");
+<br>//      
+<br>//    }
+<br>//    
+<br><br>//    if (t1.isLastIteration()) {
+<br>//      t3.disable();
+<br>//      runner.deleteTask(t3);
+<br><br>//      t2.setInterval(500);
+<br>//      Serial.println("t1: disable t3 and delete it from the chain. t2 interval set 
+<br>to 500");
+<br>//    }
+<br>}
+<br>
+<br>void manualModeCB() {
+<br>
+<br>//        ledcAnalogWrite(channels[0], 0);
+<br>//        ledcAnalogWrite(channels[1], 0);
+<br>//        ledcAnalogWrite(channels[2], 0);
+<br>//        ledcAnalogWrite(channels[3], 0);
+<br>//        ledcAnalogWrite(channels[4], 0);
+<br>//        ledcAnalogWrite(channels[5], 0);
+<br>//        ledcAnalogWrite(channels[6], 0);
+<br>//        ledcAnalogWrite(channels[7], 0);
+<br>
+      <br>int potIN = analogRead(POT);
+      <br>int speakerX = int(map(potIN, 0, 4095, 7, 0));
+<br>
+      <br>Serial.println("BUTTON 1" + digitalRead(BUTTON_1));
+      <br>Serial.println("BUTTON 2" + digitalRead(BUTTON_2));
+      <br>Serial.println("BUTTON 3" + digitalRead(BUTTON_3));
+      <br>if (digitalRead(BUTTON_3) == HIGH){
+        <br>ledcWrite (channels[speakerX], freqs[speakerX]);
+      <br>}
+      <br>else if (digitalRead(BUTTON_2) == HIGH){
+        <br>ledcAnalogWrite(6, freqs[speakerX]);
+        <br>
+       <br>}
+      <br>else if (digitalRead(BUTTON_1) == HIGH){
+<br>          ledcAnalogWrite(1, freqs[0]);
+          <br>ledcAnalogWrite(2, freqs[1]);
+          <br>ledcAnalogWrite(3, freqs[2]);
+          <br>ledcAnalogWrite(4, freqs[3]);
+          <br>ledcAnalogWrite(5, freqs[4]);
+          <br>ledcAnalogWrite(6, freqs[5]);
+          <br>ledcAnalogWrite(7, freqs[6]);
+        <br>}
+        <br>else {
+          <br>ledcAnalogWrite(1, 0);
+          <br>ledcAnalogWrite(2, 0);
+          <br>ledcAnalogWrite(3, 0);
+          <br>ledcAnalogWrite(5, 0);
+          <br>ledcAnalogWrite(6, 0);
+          <br>ledcAnalogWrite(7, 0);
+          <br>ledcAnalogWrite(8, 0);
+        <br>}
+<br>      
+<br>
+<br>//      if (speakerX != 0){
+<br>//        ledcAnalogWrite(0, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+<br>//      if (speakerX != 1){
+<br>//        ledcAnalogWrite(1, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+<br>//      if (speakerX != 2){
+<br>//        ledcAnalogWrite(2, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+<br>//      if (speakerX != 3){
+<br>//        ledcAnalogWrite(3, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+<br>//      if (speakerX != 4){
+<br>//        ledcAnalogWrite(4, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+<br>//      if (speakerX != 5){
+<br>//        ledcAnalogWrite(5, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+<br>//      if (speakerX != 6){
+<br>//        ledcAnalogWrite(6, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+<br>//      if (speakerX != 7){
+<br>//        ledcAnalogWrite(7, 0);
+<br>//      } else{
+<br>//        ledcAnalogWrite(channels[speakerX], freqs[speakerX]);
+<br>//      }
+      <br>
+<br>Serial.println(freqs[speakerX]);
+<br>//        for (int i = 0; i < 8; i++){
+<br>//
+<br>
+<br>//          
+<br>//        ledcAnalogWrite(channels[i], freqs[i]);
+<br>//
+<br>//          if (i == 7){
+<br>//            i = 0;
+<br>//          }
+<br><br>//        }
+<br>
+<br>
+<br>//      if (digitalRead(BUTTON_1) == LOW){
+<br>//          speaker1.disable();
+<br>//          ledcAnalogWrite(LEDC_CHANNEL_1, 0);
+<br>//          //Serial.println("SPEAKER 1 OFF");
+<br><br>//      }
+<br>//      else{
+<br>//        speaker1.enable();
+<br>//        //Serial.println("SPEAKER 1 ON");
+<br>//      }
+<br><br><br>//
+<br>//      if (digitalRead(BUTTON_2) == LOW){
+<br>//          speaker2.disable();
+<br>//          ledcAnalogWrite(LEDC_CHANNEL_2, 0);
+<br>//          //Serial.println("SPEAKER 2 OFF");
+<br>//      }
+<br>//      else{
+<br><br>//        speaker2 .enable();
+<br>//        //Serial.println("SPEAKER 2 ON");
+<br><br><br><br><br><br>//      }
+<br>
+<br>
+}<br>
+<br>void ambientModeCB() {
+        <br>int rando = int(random(0, 7));
+        <br>int rando2 = int(random(0, 7));
+        <br>ledcAnalogWrite(channels[rando], freqs[rando]);
+        <br>ledcAnalogWrite(channels[rando2], 0);
+<br>
+<br>}
+<br>
+<br>void speaker1CB() {
+<br>    ledcAnalogWrite(channels[0], freqs[0]);
+<br>    //Serial.println("SPEAKER 1 ON");
+<br>}
+<br>
+<br>void speaker2CB() {
+<br><br>    ledcAnalogWrite(channels[1], freqs[1]);
+<br>    //Serial.println("SPEAKER 2 ON");
+<br>}
+<br>
+<br>void speaker3CB() {
+<br>    ledcAnalogWrite(channels[2], freqs[2]);
+<br>    //Serial.println("SPEAKER 3 ON");
+<br>}
+<br>
+<br>void speaker4CB() {
+<br>    ledcAnalogWrite(channels[3], freqs[3]);
+<br>    //Serial.println("SPEAKER 4 ON");
+<br>}
+<br><br>
+<br<br>>void speaker5CB() {
+   <br>ledcAnalogWrite(channels[4], freqs[4]);
+    <br>//Serial.println("SPEAKER 5 ON");
+<br>}
+<br>
+<br><br><br>void speaker6CB() {
+<br>    ledcAnalogWrite(channels[5], freqs[5]);
+<br>    //Serial.println("SPEAKER 6 ON");
+<br>}
+<br>
+<br>void speaker7CB() {
+<br>    ledcAnalogWrite(channels[6], freqs[6]);
+<br>    //Serial.println("SPEAKER 7 ON");
+<br>}
+<br><br><br>
+<br><br><br><br>void speaker8CB() {
+<br>    ledcAnalogWrite(channels[7], freqs[7]);
+<br>    //Serial.println("SPEAKER 8 ON");
+<br>}
+<br>
+<br>
+<img src="project6/image4.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  <img src="project6/image5.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+    <img src="project6/image7.jpg" width="640" height="480" alt=""/>
+      <br>
+  <br>
+    <img src="project6/image8.jpg" width="640" height="480" alt=""/>
+      <br>
+  <br>
+    <img src="project6/image9.jpg" width="640" height="480" alt=""/>
+      <br>
+  <br>
+    <img src="project6/image10.jpg" width="640" height="480" alt=""/>
+      <br>
+  <br>
+    <img src="project6/image11.jpg" width="640" height="480" alt=""/>
+  <br>
+  <br>
+  <a href="project6/vid1.mp4">MAKER FAIRE VIDEO DOCUMENTATION</a>
+  <br>
+  <br>
+  <a href="project6/vid2.mp4">MAKER FAIRE VIDEO DOCUMENTATION</a>
+  
+  
+  <br>
+  <br>
+</blockquote>
+<br>
+
+<blockquote>
+  <br>
+    <br>
+    <br>
+
+</blockquote>
+<br>
+&nbsp;
+&nbsp;
+<blockquote>
+  <blockquote>
+    <strong>A COOL AND INTERESTING VIDEO: <a href="https://www.youtube.com/watch?v=wwGMoGc29N8">Super Slow Motion Skateboarding Filmed by Adam Shomsky at 1000 fps</a></strong><br>
+  </blockquote>
+</blockquote>
+
+
+
+</body>
+
+
+
+
+</html>
