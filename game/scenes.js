@@ -104,7 +104,7 @@ function help()  {
       text("doing it better?", w, 3*height/4 + h);
     }
     else if (count == 1){
-      text("click the thing faster", w, 3*height/4 + h);
+      text("click the thing faster.", w, 3*height/4 + h);
     }
     else if (count == 2){;
       text("try clicking the little circle.", w, 2*height/3 + h);
