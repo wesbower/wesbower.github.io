@@ -64,19 +64,20 @@ body, html {
   display: table;
   clear: both;
 }
-	
+
 .column2 {
  	 float: left;
   	width: 33.33%;
 	padding: 1px;
 }
-
-/* Clear floats after the columns */
 .row2{
-  	content: "";
+  	content: "hello";
  	 display: table;
   	clear: both;
-}
+	padding:20px;
+}	
+/* Clear floats after the columns */
+
 	
 img {
   display: block;
@@ -87,8 +88,13 @@ img {
 	
 	
 .responsive {
-  width: 80%;
+  width: 100%;
   height: auto;
+}
+	
+.boxitem {
+	padding-bottom: 1px;
+	padding-top: 1px;
 }
 </style>
 
@@ -136,23 +142,24 @@ img {
   <div class="column" style="background-color:#FFFFFF;">
     <img src="assets/home/instagramicon.png" alt="" class="responsive" style="width:20%;"/>
     <h4 class="w3-center">Instagram</h4>
+	  <p class="w3-center">Some text..</p>
     	<div class="row2">
   			<div class="column2" style="background-color:#FFFFFF;">
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
+				<img src="assets/instagram/post1.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
+				<img src="assets/instagram/post4.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
+				<img src="assets/instagram/post7.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
 			</div>
 			
 			<div class="column2" style="background-color:#FFFFFF;">
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
+				<img src="assets/instagram/post2.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
+				<img src="assets/instagram/post5.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
+				<img src="assets/instagram/post8.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
 			</div>
 			
 			<div class="column2" style="background-color:#FFFFFF;">
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
-				<img src="assets/instagram/post1.jpg" alt="" class="responsive" style="width:100%;"/>
+				<img src="assets/instagram/post3.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
+				<img src="assets/instagram/post6.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
+				<img src="assets/instagram/post9.jpg" alt="" class="responsive boxitem" style="width:100%;"/>
 			</div>
 	  </div>
   </div>
