@@ -98,9 +98,19 @@ img {
 	padding-right: 10px;
 }
 	
-	.video-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; }
-
-.video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+	.iframe-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; 
+  height: 0;
+}
+.iframe-container iframe{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 </style>
 
 
@@ -202,9 +212,13 @@ Art for video
 	  <br>
 	  <br>
 	  <br>
-	  <div style="text-align: center; iframe-container;"><iframe width="500" height="280" src="https://www.youtube.com/embed/wwyXOiROHSI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100;" allowfullscreen></iframe>
+	  <div style="iframe-container">
+	  <div style="text-align: center;">
+		  
+		  <iframe width="500" height="280" src="https://www.youtube.com/embed/wwyXOiROHSI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="width:100;" allowfullscreen></iframe>
 	  
-		
+		 </div>
+	  </div>
 	  <br>
 	  <a href="https://www.youtube.com/watch?v=gS2PM_ow_Z0">
 		<img src="assets/videos/catalystpic.jpg" alt="" class="responsive boxitem" style="width:80%;"/>
