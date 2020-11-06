@@ -6,4 +6,4 @@ var observer = new MutationObserver( function( mutations ) {
   } );
 } );
 
-observer.observe( document.querySelector( '.instagram-media'), { attributes: true, childList: true, subtree: true } );
+observer.observe( document.querySelector( '.instagram-wrapper'), { attributes: true, childList: true, subtree: true } );
