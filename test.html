@@ -98,12 +98,19 @@ img {
 	padding-left: 10px;
 	padding-right: 10px;
 }
-	
+	@media screen and (max-width: 560px) {
+  .video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
 	.iframe-container{
   position: relative;
   width: 100%;
   padding-bottom: 56.25%; 
   height: 0;
+		
 }
 .iframe-container iframe{
   position: absolute;
@@ -111,6 +118,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+	
 }
 	
 h6 {
@@ -210,7 +218,7 @@ h6 {
 	<br>
 	<br>
 	
-	<div class = "iframe-container"><div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/wwyXOiROHSI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+	<div class = "iframe-container iframe"><div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/wwyXOiROHSI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
 	
 	<br>
 	<br>
