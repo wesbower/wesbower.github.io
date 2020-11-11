@@ -60,9 +60,7 @@ img {
 }
 
 /* Position the image container (needed to position the left and right arrows) */
-.container {
-  position: relative;
-}
+
 
 /* Hide the images by default */
 .mySlides {
@@ -110,6 +108,45 @@ img {
   position: absolute;
 }
 
+a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffff4d;
+  background-color: transparent;
+}
+	img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+	.centervert{
+	top: 50%;
+	left: 50%;
+	margin-top: 25%; /* Half the height */
+	}
+
+	.pushup{
+		margin-top: -15%;
+	}
+	.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+	.responsive {
+  width: 100%;
+  height: auto;
+}
+	
 </style>
 <body>
 	<!-- Navbar (sit on top) -->
@@ -181,6 +218,79 @@ img {
   <a class="next" onclick="plusSlides(1)">❯</a>
 </div>
 
+	<br>
+	<br>
+	<br>
+	<div class = "pagelink">
+	<div style = "margin-left: 20%">
+	
+	<p> <a href="films.html" >Films</a></p>
+	<br>
+	<br>
+	
+	<p> <a href="photography.html" >Phototography</a></p>
+	<br>
+	<br>
+	
+	<p> <a href="painting.html" >Painting</a></p>
+	<br>
+	<br>
+	
+	<p> <a href="music.html" >Music</a></p>
+		<br>
+		<br>
+		</div>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="row">
+  <div class="column">
+	  <a href="portfolio.html">
+		<img src="assets/home/portfolioiconme.png" alt="" class="responsive w3-centered centervert" style="width:50%;"/>
+	  </a>
+  </div>
+	
+	
+  <div class="column">
+	  <a href="game/index.html">
+		<img src="assets/home/starchildtransparent2.png" alt="" class="responsive" style="width:100%;"/>
+	  </a>
+  </div>
+	
+	
+  <div class="column">
+	  <a href="aboutme.html">
+		<img src="assets/home/bioiconme.png" alt="" class="responsive w3-centered centervert" style="width:50%;"/>
+	  </a>
+  </div>
+</div>
+	
+	<div class="row">
+  <div class="column">
+	  <div class="pushup"><div style = "text-align: center;"><p><b>PORTFOLIO</b></p></div></div>
+  </div>
+	
+	
+  <div class="column">
+		
+  </div>
+	
+	
+  <div class="column">
+	  <div class="pushup"><div style = "text-align: center;"><p><b>ABOUT ME</b></p></div></div>
+  </div>
+</div>
+	
+<!--	Show background img3-->
+	<div class="bgimg-3 w3-display-container" id="contact" >
+  <div class="w3-display-middle">
+	  <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> San Jose, California<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: wesley.mbower@gmail.com<br>
+  </div>
+</div>
 <script>
 var slideIndex = 1;
 showSlides(slideIndex);
