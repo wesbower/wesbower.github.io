@@ -3,6 +3,7 @@
 <title>Portfolio</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link type="text/css" rel="stylesheet" href="css/main.css" />
@@ -151,14 +152,8 @@ a:hover {
     position: relative;
     height: 0;
   }
-		
-@media screen and (max-width: 560px) {
-  .img-responsive {
-    overflow: hidden;
-    padding-bottom: 56.25%;
-    position: relative;
-    height: 0;
-  }
+	img#photo {width: 100%; height: 100%; margin: 0; padding; 0;}
+
 	.iframe-container{
   position: relative;
   width: 100%;
@@ -189,7 +184,7 @@ a:hover {
     left: 0; top: 0;
   }
 
-	
+	}
 </style>
 <body>
 	<!-- Navbar (sit on top) -->
@@ -297,7 +292,7 @@ a:hover {
 	<br>
 	<br>
 	
-	<img src="assets/videos/migrationpic.jpg" class="responsive w3-centered w3-image img-responsive" alt="No photo">
+	<img src="assets/videos/migrationpic.jpg" class="w3-centered w3-image" alt="No photo" width="33%" height="33%" id="photo">
 	
 	<div class="row">
   <div class="column">
