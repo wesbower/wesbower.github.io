@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Portfolio</title>
+<title>Films</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -199,9 +199,9 @@ a:hover {
       <i class="fa fa-bars"></i>
     </a>
     <a href="index.html" class="w3-bar-item w3-button">HOME</a>
-    <a href="aboutme.html" class="w3-bar-item w3-button"><i class="fa fa-user"></i> ABOUT</a>
-    <a href="portfolio.html" class="w3-bar-item w3-button"><i class="fa fa-th"></i> PORTFOLIO</a>
-    <a href="aboutme.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+    <a href="aboutme.html" class="w3-bar-item w3-button"><i class="fa fa-user"></i>ABOUT</a>
+    <a href="portfolio.html" class="w3-bar-item w3-button"><i class="fa fa-th"></i>PORTFOLIO</a>
+    <a href="aboutme.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i>CONTACT</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
       <i class="fa fa-search"></i>
     </a>
@@ -223,6 +223,9 @@ a:hover {
 	<div class="bgimg-1 w3-display-container" id="home">
 </div>
 	<br>
+	<br>
+	<br>
+	<p style="text-align: center"><b>Films</b></p>
 	<br>
 	<br>
 	
@@ -400,7 +403,7 @@ a:hover {
 	<br>
 	<br>
 	<a href="showdoc1.html">
-		<img src="assets/showdoc/doc1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+		<img src="assets/videos/showdoc/doc1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
 	</a>
 	<br>
 	<div style = "margin-left:27%">
@@ -459,28 +462,9 @@ a:hover {
         <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: wesley.mbower@gmail.com<br>
   </div>
 </div>
+	</body>
 <script>
-var slideIndex = 1;
-showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  slides[slideIndex-1].style.display = "block";
-}
 	
 window.onscroll = function() {myFunction()};
 function myFunction() {
@@ -493,5 +477,5 @@ function myFunction() {
 }
 </script>
     
-</body>
+
 	</html>
