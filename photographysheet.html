@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<title>Sheet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link type="text/css" rel="stylesheet" href="css/main.css" />
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #000000;
+  line-height: 1.8;
+	margin: 0;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+  background-image: url('/assets/home/top.jpg');
+  min-height: 40%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+  background-image: url("assets/videos/migrationpic.jpg");
+  min-height: 100%;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+  background-image: url("/assets/home/top.png");
+  min-height: 40%;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+    min-height: 400px%;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 35%;
+  width: auto;
+  padding: 5%;
+	padding-top: 8%;
+	padding-bottom: 8%;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 1%;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  position: absolute;
+}
+
+a:link {
+	text-decoration: none;
+}
+a:hover {
+  color: #ffff4d;
+  background-color: transparent;
+	text-decoration: none;
+}
+	img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+	.centervert{
+	top: 50%;
+	left: 50%;
+	margin-top: 25%; /* Half the height */
+	}
+
+	.pushup{
+		margin-top: -15%;
+	}
+	.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+	.responsive {
+  width: 100%;
+  height: auto;
+}
+	
+.video-container {
+    position: relative;
+	height:0;
+	padding-bottom: 100%;
+	padding top: 56.25%;
+    overflow: inherit;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0; top: 0;
+  }
+@media screen and (max-width: 560px) {
+  .video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
+	
+</style>
+<body>
+	<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="index.html" class="w3-bar-item w3-button">HOME</a>
+    <a href="aboutme.html" class="w3-bar-item w3-button"><i class="fa fa-user"></i> ABOUT</a>
+    <a href="portfolio.html" class="w3-bar-item w3-button"><i class="fa fa-th"></i> PORTFOLIO</a>
+    <a href="aboutme.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+      <i class="fa fa-search"></i>
+    </a>
+  </div>
+
+<!--
+   Navbar on small screens 
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+	<a href="index.html" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+    <a href="portfolio.html" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+  </div>
+-->
+</div>
+	
+	
+	<div class="bgimg-1 w3-display-container" id="home">
+</div>
+	<br>
+	<br>
+	<br>
+	<p style="text-align: center"><b>Me, Underneath</b></p>
+	<br>
+	<p style="text-align: center">Abstract Self-Portrait series.<br>
+		The finalization of this project took the form of a hardback-book.
+	</p>
+	<br>
+	<br>
+	<br>
+	
+<!--
+<div class="container">
+  <div class="mySlides">
+    <div class="numbertext">1 / 6</div>
+    <img src="assets/portfolio/slideshow/img1.png" alt = "no image" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 6</div>
+    <img src="assets/portfolio/slideshow/img2.png" alt = "no image" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 6</div>
+    <img src="assets/portfolio/slideshow/img3.png" alt = "no image" style="width:100%">
+  </div>
+    
+  <div class="mySlides">
+    <div class="numbertext">4 / 6</div>
+    <img src="assets/portfolio/slideshow/img4.png" alt = "no image" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">5 / 6</div>
+    <img src="assets/portfolio/slideshow/img5.png" alt = "no image" style="width:100%">
+  </div>
+    
+  <div class="mySlides">
+    <div class="numbertext">6 / 6</div>
+    <img src="assets/portfolio/slideshow/img6.png" alt = "no image" style="width:100%">
+  </div>
+    
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+</div>
+
+	<br>
+	<br>
+-->
+	
+	
+	<img src="assets/photography/sheet/sheet2.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<img src="assets/photography/sheet/sheet9.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	
+	<div class="row">
+  <div class="column">
+		<img src="assets/photography/sheet/book2.jpg" alt="No image" class="responsive" style="width:85%;"/>
+  </div>
+  <div class="column">
+		<img src="assets/photography/sheet/book1.jpg" alt="No image" class="responsive" style="width:85%;"/>
+  </div>
+  <div class="column">
+		<img src="assets/photography/sheet/book3.jpg" alt="No image" class="responsive" style="width:85%;"/>
+  </div>
+</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	<img src="assets/photography/sheet/sheet1.png" class="w3-centered w3-image img-responsive" alt="No photo" width="36%" height="36%">
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	
+	
+	
+	
+	
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="row">
+  <div class="column">
+	  <a href="index.html">
+		<img src="assets/home/homeiconme.png" alt="" class="responsive w3-centered centervert" style="width:50%;"/>
+	  </a>
+  </div>
+	
+	
+  <div class="column">
+		<img src="assets/home/starchildtransparent3.png" alt="" class="responsive" style="width:100%;"/>
+  </div>
+	
+	
+  <div class="column">
+	  <a href="aboutme.html">
+		<img src="assets/home/bioiconme.png" alt="" class="responsive w3-centered centervert" style="width:50%;"/>
+	  </a>
+  </div>
+</div>
+	
+	<div class="row">
+  <div class="column">
+	  <div class="pushup"><div style = "text-align: center;"><p><b>HOME</b></p></div></div>
+  </div>
+	
+	
+  <div class="column">
+		
+  </div>
+	
+	
+  <div class="column">
+	  <div class="pushup"><div style = "text-align: center;"><p><b>ABOUT ME</b></p></div></div>
+  </div>
+</div>
+	
+<!--	Show background img3-->
+	<div class="bgimg-3 w3-display-container" id="contact" >
+  <div class="w3-display-middle">
+	  <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> San Jose, California<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: wesley.mbower@gmail.com<br>
+  </div>
+</div>
+</body>
+	
+<script>
+	
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-black";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-black", "w3-black");
+    }
+}
+</script>
+
+	</html>
